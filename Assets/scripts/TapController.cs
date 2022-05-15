@@ -18,6 +18,7 @@ public class TapController : MonoBehaviour
     public AudioSource scoreAudio;
     public AudioSource dieAudio;
 
+    SpriteRenderer sprite;
     Rigidbody2D rigidbody;
     Quaternion downRotation;
     Quaternion forwardRotation;
@@ -26,6 +27,7 @@ public class TapController : MonoBehaviour
 
     void Start()
     {
+        sprite = GetComponent<SpriteRenderer>();
         rigidbody = GetComponent<Rigidbody2D>();
         downRotation = Quaternion.Euler(0, 0, -90);
         forwardRotation = Quaternion.Euler(0, 0, 35);
@@ -77,6 +79,35 @@ public class TapController : MonoBehaviour
             OnPlayerScored(); //event sent to GameManager;
             //play a sound
             scoreAudio.Play();
+            if (5<=GameManager.Instance.Score && GameManager.Instance.Score<10)
+            {
+            sprite.color = Color.blue;
+            }
+            else if (10 <= GameManager.Instance.Score && GameManager.Instance.Score < 15)
+            {
+                sprite.color = Color.black;
+            }
+            else if (15 <= GameManager.Instance.Score && GameManager.Instance.Score < 20)
+            {
+                sprite.color = Color.yellow;
+            }
+            else if (20 <= GameManager.Instance.Score && GameManager.Instance.Score < 25)
+            {
+                sprite.color = Color.cyan;
+            }
+            else if (25 <= GameManager.Instance.Score && GameManager.Instance.Score < 30)
+            {
+                sprite.color = Color.green;
+            }
+            else if (30 <= GameManager.Instance.Score && GameManager.Instance.Score < 31)
+            {
+                sprite.color = Color.clear;
+            }
+            else if (31 <= GameManager.Instance.Score && GameManager.Instance.Score < 35)
+            {
+                sprite.color = Color.red;
+            }
+
         }
         if (collision.gameObject.tag == "DeadZone")
         {
