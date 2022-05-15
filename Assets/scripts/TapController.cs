@@ -79,6 +79,10 @@ public class TapController : MonoBehaviour
             OnPlayerScored(); //event sent to GameManager;
             //play a sound
             scoreAudio.Play();
+            if (0 <= GameManager.Instance.Score && GameManager.Instance.Score < 5)
+            {
+                sprite.color = Color.white;
+            }
             if (5<=GameManager.Instance.Score && GameManager.Instance.Score<10)
             {
             sprite.color = Color.blue;
